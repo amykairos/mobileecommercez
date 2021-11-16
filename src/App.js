@@ -1,19 +1,15 @@
 import React from 'react'
+import { Routing } from './Routing'
 import { Header } from './components/header/Header'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 import './App.css'
 
 function App () {
   return (
     <>
+      <Routing />
       <Header />
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<Header />} />
-        </Routes>
-        <Routes />
-      </BrowserRouter>
+
     </>
   )
 }

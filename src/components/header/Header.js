@@ -1,6 +1,5 @@
 import React from 'react'
 import { Breadcrumbs } from '../breadcrumbs/Breadcrumbs'
-
 import { HeaderContainer, ShoppingCart } from './styles'
 
 export const Header = () => {
