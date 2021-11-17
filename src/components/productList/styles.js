@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Search = styled.div`
+export const SearchContainer = styled.div`
   width: 100%;
   height: 100px;
   display: grid;

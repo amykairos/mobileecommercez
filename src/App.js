@@ -11,7 +11,6 @@ function App () {
       <Routing />
       <Header />
       <ProductList />
-
     </>
   )
 }
