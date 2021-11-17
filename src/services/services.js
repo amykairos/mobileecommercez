@@ -1,5 +1,5 @@
-export const getProduct = () => {
-  const path = '/api/product'
+export const getProduct = (param = '') => {
+  const path = param.length ? `/api/product/${param}` : '/api/product'
   const method = { method: 'GET' }
   const response = Api(path, method)
   return response
