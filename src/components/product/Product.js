@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import { getProduct } from '../../services/services'
+import { addProduct, getProduct } from '../../services/services'
 import { DescriptionProduct } from '../description-product/DescriptionProduct'
 import { ProductContainer } from './styled'
 import { OptionsProduct } from '../options-product/OptionsProduct'
 
-export const Product = (initialState) => {
+export const Product = () => {
   const [productInfo, setProductInfo] = useState({})
   const [codeColor, setCodeColor] = useState('')
   const [color, setColor] = useState([])
   const [codeStorage, setCodeStorage] = useState('')
   const [storage, setStorage] = useState([])
   const [selected, setSelected] = useState(false)
-  const afuego = 'ZmGrkLRPXOTpxsU4jjAcv'
+  const afuego = 'ND1elEt4nqZrCeFflDUZ2'
 
   useEffect(async () => {
     try {
@@ -29,12 +29,21 @@ export const Product = (initialState) => {
       setColor(productInfo.options.colors)
       setStorage(productInfo.options.storages)
     }
-    console.log(codeColor, codeStorage, 'lamada')
   }, [productInfo])
 
-  useEffect(() => {
+  useEffect(async () => {
     if (selected) {
-      console.log(codeColor, codeStorage, 'selected')
+      try {
+        const body = {
+          id: productInfo.id,
+          colorCode: codeColor.toString(),
+          storageCode: codeStorage.toString()
+        }
+        const response = await addProduct(body)
+        console.log(response)
+      } catch (e) {
+        console.error(e)
+      }
     }
   }, [selected])
 
