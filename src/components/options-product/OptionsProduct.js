@@ -1,16 +1,25 @@
 import React from 'react'
 
-export const OptionsProduct = (data) => {
-  console.log(data)
+export const OptionsProduct = ({ colors, storages, setCodeColor, setCodeStorage, setSelected }) => {
   const handleClick = () => {
+    setSelected(true)
   }
+  const handleChange = (event) => {
+    if (event.target.id === 'memory') {
+      setCodeStorage(event.target.value)
+    }
+    if (event.target.id === 'color') {
+      setCodeColor(event.target.value)
+    }
+  }
+
   return (
     <>
-      <select id='color'>
-        {data?.colors?.map((color, index) => <option key={index} value={color.name}>{color.name}</option>)}
+      <select id='color' onChange={handleChange}>
+        {colors?.map((color, index) => <option key={index} value={color.code}>{color.name}</option>)}
       </select>
-      <select id='memory'>
-        {data?.storages.map((item, index) => <option key={index} value={item.name}>{item.name}</option>)}
+      <select id='memory' onChange={handleChange}>
+        {storages?.map((item, index) => <option key={index} value={item.code}>{item.name}</option>)}
       </select>
       <button onClick={handleClick}>Añadir</button>
     </>
