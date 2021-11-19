@@ -4,14 +4,20 @@ import { DescriptionProduct } from '../description-product/DescriptionProduct'
 import { ProductContainer } from './styled'
 import { OptionsProduct } from '../options-product/OptionsProduct'
 
-export const Product = () => {
+export const Product = ({ setTotalProducts }) => {
   const [productInfo, setProductInfo] = useState({})
   const [codeColor, setCodeColor] = useState('')
   const [color, setColor] = useState([])
   const [codeStorage, setCodeStorage] = useState('')
   const [storage, setStorage] = useState([])
+  const [shopList, setShopList] = useState([])
   const [selected, setSelected] = useState(false)
   const afuego = 'ND1elEt4nqZrCeFflDUZ2'
+
+  const cleanLocalStorage = (id) => {
+    console.log('estoy entrando')
+    setTimeout(() => localStorage.removeItem(id), 3600000000)
+  }
 
   useEffect(async () => {
     try {
@@ -40,12 +46,22 @@ export const Product = () => {
           storageCode: codeStorage.toString()
         }
         const response = await addProduct(body)
-        console.log(response)
+        setShopList([...shopList, response])
+        setSelected(false)
       } catch (e) {
         console.error(e)
       }
     }
   }, [selected])
+
+  useEffect(() => {
+    const productPosition = shopList.length
+    const objectSaved = shopList[(productPosition - 1)]
+    console.log(JSON.stringify(objectSaved))
+    setTotalProducts(productPosition)
+    localStorage.setItem(productInfo.id, JSON.stringify(objectSaved))
+    cleanLocalStorage(productInfo.id)
+  }, [shopList])
 
   return (
     <>

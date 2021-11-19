@@ -26,11 +26,11 @@ const Api = async (path, { method = 'GET' } = {}, param) => {
       'Content-Type': 'application/json'
     }
     // eslint-disable-next-line no-undef
-    console.log(method, 'para Adri')
     response = await fetch(url, { method, body: a, headers: headers })
     data = response.json()
     return data
   }
+  // eslint-disable-next-line no-undef
   response = await fetch(url, { method })
   data = response.json()
   return data
