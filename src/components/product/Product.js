@@ -4,7 +4,7 @@ import { DescriptionProduct } from '../description-product/DescriptionProduct'
 import { ProductContainer } from './styled'
 import { OptionsProduct } from '../options-product/OptionsProduct'
 
-export const Product = ({ setTotalProducts }) => {
+export const Product = ({ setTotalProducts, setProductName }) => {
   const [productInfo, setProductInfo] = useState({})
   const [codeColor, setCodeColor] = useState('')
   const [color, setColor] = useState([])
@@ -15,7 +15,6 @@ export const Product = ({ setTotalProducts }) => {
   const afuego = 'ND1elEt4nqZrCeFflDUZ2'
 
   const cleanLocalStorage = (id) => {
-    console.log('estoy entrando')
     setTimeout(() => localStorage.removeItem(id), 3600000000)
   }
 
@@ -23,6 +22,7 @@ export const Product = ({ setTotalProducts }) => {
     try {
       const productItem = await getProduct(afuego)
       setProductInfo(productItem)
+      setProductName(productItem.model)
     } catch (e) {
       console.error(e)
     }
