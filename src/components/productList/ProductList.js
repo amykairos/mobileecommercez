@@ -28,9 +28,11 @@ export const ProductList = () => {
             .map(product =>
               <ThumbnailProduct
                 key={product.id}
+                id={product.id}
                 title={product.brand}
                 subtitle={product.model}
                 urlImage={product.imgUrl}
+                price={product.price}
               />
             )}
         </List>

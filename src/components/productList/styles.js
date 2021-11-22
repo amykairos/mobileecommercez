@@ -9,7 +9,6 @@ export const SearchContainer = styled.div`
 `
 export const List = styled.ul`
   display: grid;
-  grid-template-columns: repeat(4, 21%);
-  grid-template-rows: repeat(2, 5%);
+  grid-template-columns: repeat(4, 1fr);
   justify-content: space-around;
 `

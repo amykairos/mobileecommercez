@@ -1,21 +1,37 @@
-export const getProduct = () => {
-  const path = '/api/product'
-  const method = { method: 'GET' }
-  const response = Api(path, method)
+export const getProduct = (id = '') => {
+  const path = id.length ? `/api/product/${id}` : '/api/product'
+  const response = Api(path, { method: 'GET' }, {})
   return response
 }
 
-const parseUrl = async (param) => {
+export const addProduct = (param) => {
+  const path = '/api/cart/'
+  const response = Api(path, { method: 'POST' }, param)
+  return response
+}
+
+const parseUrl = async (path) => {
   const baseUrl = 'https://front-test-api.herokuapp.com'
-  const url = `${baseUrl}${param}`
+  const url = `${baseUrl}${path}`
   return url
 }
 
-const Api = async (path, { method = 'GET' } = {}) => {
+const Api = async (path, { method = 'GET' } = {}, param) => {
   const url = await parseUrl(path)
-  const response = await fetch(url, {
-    method
-  })
-  const data = response.json()
+  let data
+  let response
+  if (Object.keys(param).length) {
+    const a = JSON.stringify(param)
+    const headers = {
+      'Content-Type': 'application/json'
+    }
+    // eslint-disable-next-line no-undef
+    response = await fetch(url, { method, body: a, headers: headers })
+    data = response.json()
+    return data
+  }
+  // eslint-disable-next-line no-undef
+  response = await fetch(url, { method })
+  data = response.json()
   return data
 }

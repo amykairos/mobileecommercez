@@ -6,8 +6,8 @@ export const HeaderContainer = styled.div`
   justify-content: space-around;
   align-items: center;
   width: 100%;
-  background-color: aquamarine;
+  background-color: #daf9ee;
 `
 export const ShoppingCart = styled(FaShoppingCart)`
-  color: red;
+  color: #9e53ff;
 `
