@@ -3,19 +3,21 @@ import { Breadcrumbs } from '../breadcrumbs/Breadcrumbs'
 import { HeaderContainer, ShoppingCart } from './styles'
 
 export const Header = ({ cartTotalProducts, productName }) => {
+  const [products, setProducts] = useState(0)
   const [totalProducts, setTotalProducts] = useState(0)
-
-  const products = localStorage.getItem('total Products') || []
   useEffect(() => {
-    setTotalProducts(products.length)
+    setProducts(cartTotalProducts)
+    const total = products + totalProducts
+    setTotalProducts(total)
   }, [cartTotalProducts])
-  console.log(totalProducts, productName)
   return (
     <HeaderContainer>
       <h3>Movil Market</h3>
-      <Breadcrumbs currentPath='hahaha' />
-      <ShoppingCart />
-      {cartTotalProducts}
+      <Breadcrumbs currentPath={productName} />
+      <div>
+        <ShoppingCart />
+        {cartTotalProducts === 0 ? '' : totalProducts}
+      </div>
     </HeaderContainer>
   )
 }

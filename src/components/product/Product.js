@@ -57,7 +57,6 @@ export const Product = ({ setTotalProducts, setProductName }) => {
   useEffect(() => {
     const productPosition = shopList.length
     const objectSaved = shopList[(productPosition - 1)]
-    console.log(JSON.stringify(objectSaved))
     setTotalProducts(productPosition)
     localStorage.setItem(productInfo.id, JSON.stringify(objectSaved))
     cleanLocalStorage(productInfo.id)

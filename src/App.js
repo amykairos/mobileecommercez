@@ -16,12 +16,12 @@ function App () {
           <Route path='/' exact>
             <ProductList />
           </Route>
-          <Route path=':id'>
+          <Route path='/:id'>
             <Product setTotalProducts={setTotalProducts} setProductName={setProductName} />
           </Route>
           <Route path='*'>
             <p>
-              Esta no es una página valida
+              Esta no es una página válida
             </p>
           </Route>
         </Switch>
